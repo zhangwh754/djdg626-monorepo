@@ -5,8 +5,7 @@ import dts from 'vite-plugin-dts'
 export default defineConfig({
   plugins: [
     dts({
-      root: './',
-      exclude: './vite.config.mts'
+      entryRoot: resolve(__dirname, './'),
     }),
   ],
   build: {
