@@ -7,4 +7,6 @@ const vm = new Mvvm({
   },
 })
 
-console.log('vm', vm)
+console.log('vm', vm.msg)
+vm.msg = '你好世界'
+console.log('vm', vm.msg)

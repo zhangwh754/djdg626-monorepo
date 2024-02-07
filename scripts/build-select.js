@@ -1,5 +1,10 @@
 const readline = require('readline')
 const fs = require('fs')
+const { exec } = require('child_process')
+require('dotenv').config()
+
+const currentIndex = process.env.CURRENT_INDEX
+let files = []
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -8,44 +13,49 @@ const rl = readline.createInterface({
 
 const packagesDir = './packages/'
 
-fs.readdir(packagesDir, (err, files) => {
+fs.readdir(packagesDir, (err, fileList) => {
   if (err) {
     console.error('Error reading packages directory:', err)
     return
   }
 
-  console.log('Available packages:')
-  files.forEach(file => {
-    console.log(file)
-  })
+  files = fileList
 
-  rl.question('Enter the package number you want to build: ', answer => {
-    const selectedPackage = files.find(file => file.startsWith(`${answer}-`))
+  if (currentIndex !== undefined) {
+    buildLib(currentIndex)
+  } else {
+    console.log('Available packages:')
+    files.forEach(file => {
+      console.log(file)
+    })
 
-    if (!selectedPackage) {
-      console.error('Package not found!')
-      rl.close()
+    rl.question('Enter the package number you want to build: ', answer => {
+      buildLib(answer)
+    })
+  }
+})
+
+function buildLib(index) {
+  const selectedPackage = files.find(file => file.startsWith(`${index}-`))
+
+  if (!selectedPackage) {
+    console.error('Package not found!')
+    rl.close()
+    return
+  }
+
+  const packagePath = `${packagesDir}${selectedPackage}`
+  const publishCommand = `pnpm --prefix ${packagePath} build`
+
+  console.log(`Building package ${selectedPackage}...`)
+
+  exec(publishCommand, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error.message}`)
       return
     }
 
-    const packagePath = `${packagesDir}${selectedPackage}`
-    const publishCommand = `pnpm --prefix ${packagePath}  build `
-
-    console.log(`Building package ${selectedPackage}...`)
-
-    const { exec } = require('child_process')
-    exec(publishCommand, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error: ${error.message}`)
-        return
-      }
-      if (stderr) {
-        console.error(`stderr: ${stderr}`)
-        return
-      }
-      console.log(`Package ${selectedPackage} build successfully!`)
-    })
-
+    console.log(`Package ${selectedPackage} build successfully!`)
     rl.close()
   })
-})
+}
