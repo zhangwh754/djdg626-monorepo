@@ -43,6 +43,9 @@ importers:
       '@djdg626/myconsole':
         specifier: workspace:^
         version: link:../packages/01-myConsole
+      '@djdg626/vue-mvvm':
+        specifier: workspace:^
+        version: link:../packages/02-vue-mvvm
     devDependencies:
       autoprefixer:
         specifier: ^10.4.17

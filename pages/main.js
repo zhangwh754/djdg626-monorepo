@@ -1,5 +1,10 @@
-import { myConsole } from '@djdg626/myconsole'
+import { Mvvm } from '@djdg626/vue-mvvm'
 
-myConsole.log(11111)
-myConsole.error(11111)
-myConsole.warn(11111)
+const vm = new Mvvm({
+  el: '#app',
+  data: {
+    msg: 'Hello World',
+  },
+})
+
+console.log('vm', vm)

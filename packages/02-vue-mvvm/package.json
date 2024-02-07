@@ -1,0 +1,22 @@
+{
+  "name": "@djdg626/vue-mvvm",
+  "version": "0.0.2",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "files": ["lib"],
+  "main": "./lib/index.umd.js",
+  "module": "./lib/index.es.js",
+  "exports": {
+    ".": {
+      "import": "./lib/index.es.js",
+      "require": "./lib/index.umd.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./*": "./*"
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "typings": "lib/index.d.ts"
+}
