@@ -5,7 +5,7 @@ import dts from 'vite-plugin-dts'
 export default defineConfig({
   plugins: [
     dts({
-      entryRoot: resolve(__dirname, './'),
+      entryRoot: resolve(__dirname, './src'),
     }),
   ],
   build: {
