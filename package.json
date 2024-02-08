@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm --prefix ./pages dev",
-    "build-select": "node scripts/build-select.js",
-    "publish-select": "node scripts/publish-select.js"
+    "build": "node scripts/build-select.js"
   },
   "keywords": [],
   "author": "",
