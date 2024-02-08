@@ -3,9 +3,9 @@ import { Mvvm } from '@djdg626/vue-mvvm'
 const vm = new Mvvm({
   el: '#app',
   data: {
-    // msg: 'Hello World',
-    // msg2: '你好世界',
-    // count: 0,
+    msg: 'Hello World',
+    msg2: '你好世界',
+    count: 0,
 
     obj: {
       a: 1,
@@ -17,7 +17,8 @@ const vm = new Mvvm({
   },
   methods: {
     sayHi() {
-      console.log('this.msg', this.msg)
+      const res = this.msg === 'Hello World' ? '你好世界' : 'Hello World'
+      this.msg = res
     },
 
     addCount() {
@@ -28,7 +29,6 @@ const vm = new Mvvm({
   },
 })
 
-// console.log(vm.msg)
-console.log(vm.obj.b.c)
-vm.obj.b.c = 100
-console.log(vm.obj.b.c)
+// console.log(vm.obj.b.c)
+// vm.obj.b.c = 100
+// console.log(vm.obj.b.c)

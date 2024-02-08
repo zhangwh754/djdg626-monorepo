@@ -1,3 +1,5 @@
+import { Deps } from './Deps'
+
 export class Observers {
   constructor(data: Object) {
     this.walk(data)
@@ -16,19 +18,20 @@ export class Observers {
   }
 
   defineReactive(data: Object, key: string, value: any) {
+    const deps = new Deps()
+
     Object.defineProperty(data, key, {
       configurable: true,
       enumerable: true,
       get() {
-        // console.log('get..', key)
+        Deps.target && deps.addSubs(Deps.target)
 
         return value
       },
       set(newValue) {
-        // console.log('set..')
-
         value = newValue
-        // data[key as keyof typeof data] = newValue
+
+        deps.notify(newValue)
       },
     })
   }

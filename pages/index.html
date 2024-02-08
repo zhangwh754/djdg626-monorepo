@@ -16,10 +16,15 @@
   </div> -->
 
   <div id="app">
-    <input type="text" :value="count">
+    <input class="input input-border input-primary" type="text" :value="count">
+    <input class="input input-border input-primary" type="text" v-model="count">
+    <hr />
+
+    <div>current count： {{   count}}</div>
     <hr />
 
     <div v-text="啦啦啦">被覆盖</div>
+    <hr />
 
     <p>
       第一个：{{msg}}

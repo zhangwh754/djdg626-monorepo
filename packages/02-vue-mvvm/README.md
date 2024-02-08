@@ -28,3 +28,4 @@ const vm = new Mvvm({
 - [x] 编译v-开头的vue指令（完成了v-text）
 - [x] 绑定methods事件（@click="customEventName"）
 - [x] 给data的数据添加响应式处理
+- [x] 响应式数据双向绑定（第一层的基本数据类型完成）
