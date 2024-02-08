@@ -9,13 +9,28 @@
 </head>
 
 <body>
-  <div class="m-8 flex flex-col w-60 gap-2">
+  <!-- <div class="m-8 flex flex-col w-60 gap-2">
     <button class="btn btn-warning">warning</button>
     <button class="btn btn-primary">primary</button>
     <button class="btn btn-success">success</button>
-  </div>
+  </div> -->
 
-  <div id="app"></div>
+  <div id="app">
+    <input type="text" :value="count">
+    <hr />
+
+    <div v-text="啦啦啦">被覆盖</div>
+
+    <p>
+      第一个：{{msg}}
+      <hr />
+      第二个：{{msg2}}
+    </p>
+    <hr />
+
+    <button class="btn btn-success" @click="sayHi">success</button>
+    <button class="btn btn-primary" @click="addCount">addCount</button>
+  </div>
 
   <script type="module" src="./main.js"></script>
 </body>

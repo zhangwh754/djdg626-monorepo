@@ -1,3 +1,3 @@
-import Mvvm from './mvvm'
+import Mvvm from './Mvvm'
 
 export { Mvvm }

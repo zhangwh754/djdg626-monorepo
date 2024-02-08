@@ -1,19 +1,26 @@
+import { Compiler } from './Compiler'
+
 type Options = {
   el: string
   data: Object
+  methods: { [key: string]: Function }
 }
 
 export default class Mvvm {
   $options: Options
   $el: HTMLElement
   $data: Object
+  $methods: { [key: string]: Function }
 
   constructor(options: Options) {
     this.$el = document.querySelector(options.el)!
     this.$options = options
     this.$data = options.data
+    this.$methods = options.methods
 
     this._proxyData(options.data)
+
+    new Compiler(this, this.$el, this.$data, this.$methods)
   }
 
   _proxyData(data: Object) {
