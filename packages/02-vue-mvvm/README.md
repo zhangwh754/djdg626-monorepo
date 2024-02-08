@@ -4,20 +4,59 @@
 
 ```html
 <div id="app">
-  <input type="text" v-model="word">
-  <p>{{word}}</p>
-  <button v-on:click="sayHi">change model</button>
+  <input class="input input-border input-primary" type="text" :value="count">
+  <input class="input input-border input-primary" type="text" v-model="count">
+  <hr />
+
+  <div>current count： {{   count}}</div>
+  <hr />
+
+  <div v-text="啦啦啦">被覆盖</div>
+  <hr />
+
+  <p>
+    第一个：{{msg}}
+    <hr />
+    第二个：{{msg2}}
+  </p>
+  <hr />
+
+  <button class="btn btn-success" @click="sayHi">success</button>
+  <button class="btn btn-primary" @click="addCount">addCount</button>
 </div>
 ```
 
 ```js
-import { Mvvm } from "@djdg626/vue-mvvm";
+import { Mvvm } from '@djdg626/vue-mvvm'
+
 const vm = new Mvvm({
-  el: "#app",
+  el: '#app',
   data: {
-    msg: "Hello World",
+    msg: 'Hello World',
+    msg2: '你好世界',
+    count: 0,
+
+    obj: {
+      a: 1,
+      b: {
+        c: 2,
+        d: 3,
+      },
+    },
   },
-});
+  methods: {
+    sayHi() {
+      const res = this.msg === 'Hello World' ? '你好世界' : 'Hello World'
+      this.msg = res
+    },
+
+    addCount() {
+      this.count += 1
+
+      console.log('this.count', this.count)
+    },
+  },
+})
 ```
 
 ## 进度
