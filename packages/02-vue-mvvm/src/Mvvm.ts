@@ -1,3 +1,4 @@
+import { Observers } from './Observers'
 import { Compiler } from './Compiler'
 
 type Options = {
@@ -20,6 +21,7 @@ export default class Mvvm {
 
     this._proxyData(options.data)
 
+    new Observers(this.$data)
     new Compiler(this, this.$el, this.$data, this.$methods)
   }
 
