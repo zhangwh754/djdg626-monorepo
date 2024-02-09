@@ -1,18 +1,12 @@
 import { Sub } from './Sub'
-
-type ISub = {
-  update: Function
-  [key: string]: any
-}
-
 export class Deps {
-  deps: ISub[]
+  deps: Sub[]
 
   constructor() {
     this.deps = []
   }
 
-  addSubs(sub: ISub) {
+  addSubs(sub: Sub) {
     if (sub && typeof sub.update === 'function') {
       this.deps.push(sub)
     }
